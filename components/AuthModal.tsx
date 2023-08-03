@@ -8,7 +8,7 @@ import { ThemeSupa } from "@supabase/auth-ui-shared";
 import useAuthModal from "@/hooks/useAuthModal";
 
 import Modal from "./Modal";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 const AuthModal = () => {
   const supabaseClient = useSupabaseClient();
@@ -34,7 +34,7 @@ const AuthModal = () => {
       title="Welcome back"
       description="Login to your account"
       isOpen={isOpen}
-      onChange={() => {}}
+      onChange={onChange}
     >
       <Auth 
         theme="dark"
