@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import useSubscribeModal from "@/hooks/useSubscribeModal";
 
 interface LikeButtonProps {
   songId: string;
@@ -17,7 +18,8 @@ const LikeButton: React.FC<LikeButtonProps> = ({songId}) => {
   const { supabaseClient } = useSessionContext();
 
   const authModal = useAuthModal();
-  const { user } = useUser();
+  const { user, subscription } = useUser();
+  const subscribeModal = useSubscribeModal();
 
   const [isLiked, setIsLiked] = useState(false);
 
@@ -40,6 +42,9 @@ const LikeButton: React.FC<LikeButtonProps> = ({songId}) => {
   const handleLike = async () => {
     if (!user) {
       return authModal.onOpen();
+    }
+    if (!subscription) {
+      return subscribeModal.onOpen();
     }
 
     if (isLiked) {
