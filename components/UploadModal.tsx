@@ -42,6 +42,7 @@ const UploadModal = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async(values) => {
     try {
+      
       setIsLoading(true)
 
       const imageFile = values.image?.[0];
@@ -93,7 +94,7 @@ const UploadModal = () => {
 
       router.refresh();
       setIsLoading(false);
-      toast.success('Song created!');
+      toast.success('Thanks for the suggestion!');
       reset();
       uploadModal.onClose();
     } catch (error) {
